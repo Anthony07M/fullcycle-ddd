@@ -1,0 +1,6 @@
+node_modules
+dist
+:memory
+:memorythree
+:memorytwo
+0**.md
