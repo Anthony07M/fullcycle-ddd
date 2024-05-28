@@ -13,9 +13,7 @@ export class Customer {
     this.validate();
   }
 
-  // Esse método já é uma regra de negócio, logo essa classe não é mais anêmica
   changeName(newName: string): void {
-    // por exemplo eu posso adicionar validação nesse nome recebido por paramêtro
     this._name = newName;
     this.validate();
   }
@@ -73,54 +71,3 @@ export class Customer {
     this._rewardPoints += points;
   }
 }
-
-/*
-    ENTIDADE ANÊMICAS
-
-    Olhando para essa classe, o que faz pensar que ela é uma entidade ? 
-        R: Por causa do seu ID, toda entidade é única. E o que torna essa classe
-        única é seu ID, pois todos os customers vão ter ids diferentes
-
-
-    obs: classse anêmica é uma classe que só carrega dados
-
-    Essa classe é uma entidade anêmica, porque ? 
-        R: Porque ela está apenas guardando dados
-*/
-
-/*
-    REGRAS DE NEGÓCIO
-    * Quando há mudanças de regras ou aplicação de regras na classe, como por exemplo:
-        adicionar um changeName(newName) -> funçao que vai alterar o nome da entidad/classe
-        nesse caso já estamos falando de regra de negócio e essa classe não se torna mais uma 
-        classe anêmica. Outro exemplo é desativar ou ativar o usuário, se esses métodos existirem
-        então a minha classe já tem regra de negócio, ou seja não é mais uma classe anêmica.
- */
-
-/*
-    CONSCISTÊNCIA CONSTANTE EM PRIMEIRO LUGAR
-
-    * A entidade sempre obrigatóriamente vai ter que representar o estado correto e atual daquele elemento
-    * Os dados a todo momento eles precisam está consistente
-    * Se a entidade não estiver 100% consistente então eu não estou cobrindo a regra de negócio
-*/
-
-/*
-    PRINCÍPIO DE AUTOVALIDAÇÃO
-    * Uma entidade por padrão ela sempre vai se autovalidar
-    ex: Se não tiver validação eu posso criar um customer dessa forma. const customer = new Customer("123", "", "", "")
-*/
-
-/*
-    ENTIDADE VS ORM
-    
-    * Existem entidades focadas em NEGÓCIO e PERSISTÊNCIA
-
-    ***Complexidade de negócio
-    - Entity -> fala com negócio
-        - customer.ts (regra de negócio)
-    ***Complexidade acidental
-    - Infra -> fala com o mundo externo
-        - Entity / Model
-            - customer.ts (get, set)
-*/

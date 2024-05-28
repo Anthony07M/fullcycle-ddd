@@ -20,8 +20,12 @@ export class OrderItem {
     this.validate();
   }
 
+  orderItemTotal(): number {
+    return this._price * this._quantity
+  }
+
   get price(): number {
-    return this._price * this._quantity;
+    return this._price;
   }
 
   get id(): string {

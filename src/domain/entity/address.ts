@@ -42,14 +42,8 @@ export class Address {
     if (this._zip.length === 0) {
         throw new Error('Zip is required')
     }
-
-    // resto da validação....
   }
 
 
 }
 
-// essa classe é um objeto de valor pois ela é imutável, não pode ser alterada, ela se autovalida e tem propiedades apenas para leitura
-// eu também posso ter métodos de visualização, como por exemplo o toString()
-// eu consigo visualizar de várias formas que eu preciso, mas não posso fazer alteração
-// objetos de valores NÃO são únicos, ele só serve para carregar propiedades

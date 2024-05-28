@@ -27,7 +27,11 @@ export class Order {
   }
 
   total(): number {
-    return this._items.reduce((acc, current) => acc + current.price, 0);
+    return this._items.reduce((acc, item) => acc + item.orderItemTotal(), 0);
+  }
+
+  addItem(orderItem: OrderItem): void {
+    this._items.push(orderItem);
   }
 
   validate(): boolean {
@@ -47,5 +51,3 @@ export class Order {
   }
 }
 
-// se uma entidade está em diferentes agregados, então a relação é por ID
-// se a entidade está no mesmo agregado, então a relação é por Entidade/Objeto
