@@ -1,4 +1,4 @@
-import { Product } from "../product/product.entity";
+import { Product } from "../entity/product.entity";
 
 export class ProductService {
     static increasePrice(products: Product[], percentage: number) {

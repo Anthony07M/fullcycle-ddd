@@ -1,6 +1,6 @@
-import { Customer } from "../customer/customer.entity";
-import { OrderItem } from "../entity/order_items";
-import { Order } from "../order/order.entity";
+import { Order } from "../entity/order.entity";
+import { OrderItem } from "../order_items";
+import { Customer } from "../../customer/entity/customer.entity";
 import { OrderSerivce } from "./order.service";
 
 describe("Order service unit testes", () => {
