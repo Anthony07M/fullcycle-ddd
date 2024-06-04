@@ -1,7 +1,7 @@
-import { Order } from "../entity/order.entity";
+import { Customer } from "../customer/customer.entity";
 import { OrderItem } from "../entity/order_items";
+import { Order } from "../order/order.entity";
 import { OrderSerivce } from "./order.service";
-import { Customer } from "../entity/customer.entity";
 
 describe("Order service unit testes", () => {
   it("should place an order", () => {

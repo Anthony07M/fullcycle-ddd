@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize-typescript";
 import { ProductRepository } from "./product.repository";
-import { Product } from "../../domain/entity/product.entity";
+import { Product } from "../../domain/product/product.entity";
 import { ProductModel } from "../database/sequelize/model/product.model";
 
 describe("Product respository test", () => {

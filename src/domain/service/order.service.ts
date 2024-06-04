@@ -1,7 +1,7 @@
-import { Customer } from "../entity/customer.entity";
-import { Order } from "../entity/order.entity";
 import { OrderItem } from "../entity/order_items";
 import { randomUUID } from 'node:crypto';
+import { Order } from "../order/order.entity";
+import { Customer } from "../customer/customer.entity";
 
 
 export class OrderSerivce {

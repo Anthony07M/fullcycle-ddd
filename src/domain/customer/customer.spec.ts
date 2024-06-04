@@ -1,4 +1,4 @@
-import { Address } from "./address";
+import { Address } from "./object-value/address";
 import { Customer } from "./customer.entity";
 
 describe("Unit test Customer", () => {

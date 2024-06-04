@@ -1,4 +1,4 @@
-import { OrderItem } from "./order_items";
+import { OrderItem } from "../entity/order_items";
 
 export class Order {
   private _id: string;
