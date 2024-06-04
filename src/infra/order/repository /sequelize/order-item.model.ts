@@ -6,8 +6,8 @@ import {
   ForeignKey,
   BelongsTo,
 } from "sequelize-typescript";
+import { ProductModel } from "../../../product/repository/sequelize/product.model";
 import { OrderModel } from "./order.model";
-import { ProductModel } from "./product.model";
 
 @Table({ tableName: "orders_items", timestamps: false })
 export class OrderItemModel extends Model {
