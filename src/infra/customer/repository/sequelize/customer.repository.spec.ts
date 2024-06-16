@@ -10,7 +10,7 @@ describe("Customer repository test", () => {
   beforeEach(async () => {
     sequelize = new Sequelize({
       dialect: "sqlite",
-      storage: ":memory",
+      storage: ":memorytree",
       logging: false,
       sync: { force: true },
     });
