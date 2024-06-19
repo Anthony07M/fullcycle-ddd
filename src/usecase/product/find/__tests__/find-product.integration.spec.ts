@@ -15,7 +15,7 @@ describe("Unit tests Product usecase", () => {
     beforeEach(async () => {
       sequelize = new Sequelize({
         dialect: "sqlite",
-        storage: ":memoryt:",
+        storage: ":memory:",
         logging: false,
         sync: { force: true },
       });
