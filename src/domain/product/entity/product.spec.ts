@@ -45,4 +45,16 @@ describe("Product unit tests", () => {
 
     expect(product.price).toEqual(validPrice);
   });
+
+  it("should throw error when name and id are empty", () => {
+    expect(() => {
+      const product = new Product("", "", 1);
+    }).toThrow("Id is required,name is required");
+  })
+
+  it("should throw error when name and id are empty and price less than 0", () => {
+    expect(() => {
+      const product = new Product("", "", -1);
+    }).toThrow("Id is required,name is required,price must be greater than 0");
+  })
 });
