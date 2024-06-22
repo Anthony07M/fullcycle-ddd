@@ -1,5 +1,6 @@
 import { Entity } from "../../@shared/entity/entity.abstract";
 import { NotificationError } from "../../@shared/notification/notification.error";
+import { CustomerValidatorFactory } from "../factory/customer.validator.factory";
 import { Address } from "../object-value/address";
 
 export class Customer extends Entity {
@@ -44,7 +45,8 @@ export class Customer extends Entity {
   }
 
   validate() {
-    if (this.id.length === 0) {
+    CustomerValidatorFactory.create().validate(this);
+    /*if (this.id.length === 0) {
       this.notification.addError({
         context: "customer",
         message: "Id is required",
@@ -56,7 +58,7 @@ export class Customer extends Entity {
         context: "customer",
         message: "Name is required",
       });
-    }
+    }*/
   }
 
   isActive(): boolean {
