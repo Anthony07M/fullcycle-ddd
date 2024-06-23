@@ -64,12 +64,63 @@ describe("E2E /customers", () => {
         },
       });
 
-     const listResponseCustomers = await supertest(app).get("/customers");
+    const listResponseCustomers = await supertest(app).get("/customers");
 
-     expect(listResponseCustomers.status).toEqual(200);
-     expect(listResponseCustomers.body.customers.length).toEqual(2);
+    expect(listResponseCustomers.status).toEqual(200);
+    expect(listResponseCustomers.body.customers.length).toEqual(2);
 
-     expect(listResponseCustomers.body.customers[0]).toEqual(response1.body);
-     expect(listResponseCustomers.body.customers[1]).toEqual(response2.body);
+    expect(listResponseCustomers.body.customers[0]).toEqual(response1.body);
+    expect(listResponseCustomers.body.customers[1]).toEqual(response2.body);
+  });
+
+  it("should list all customers xml", async () => {
+    const response1 = await supertest(app)
+      .post("/customers")
+      .send({
+        name: "John Doe",
+        address: {
+          street: "street",
+          city: "city",
+          number: 1,
+          zip: "000000",
+        },
+      });
+
+    const response2 = await supertest(app)
+      .post("/customers")
+      .send({
+        name: "Jane Doe",
+        address: {
+          street: "street 2",
+          city: "city 2",
+          number: 2,
+          zip: "000002",
+        },
+      });
+
+    const listResponseCustomersXML = await supertest(app)
+      .get("/customers")
+      .set("Accept", "application/xml")
+      .send();
+
+
+    expect(listResponseCustomersXML.status).toBe(200);
+    expect(listResponseCustomersXML.text).toContain(`<?xml version="1.0" encoding="UTF-8"?>`);
+    expect(listResponseCustomersXML.text).toContain(`<customers>`);
+    expect(listResponseCustomersXML.text).toContain(`<customer>`);
+    expect(listResponseCustomersXML.text).toContain(`<name>John Doe</name>`);
+    expect(listResponseCustomersXML.text).toContain(`<address>`);
+    expect(listResponseCustomersXML.text).toContain(`<street>street</street>`);
+    expect(listResponseCustomersXML.text).toContain(`<city>city</city>`);
+    expect(listResponseCustomersXML.text).toContain(`<number>1</number>`);
+    expect(listResponseCustomersXML.text).toContain(`<zip>000000</zip>`);
+    expect(listResponseCustomersXML.text).toContain(`</address>`);
+    expect(listResponseCustomersXML.text).toContain(`</customer>`);
+    expect(listResponseCustomersXML.text).toContain(`<name>Jane Doe</name>`);
+    expect(listResponseCustomersXML.text).toContain(`<street>street 2</street>`);
+    expect(listResponseCustomersXML.text).toContain(`<city>city 2</city>`);
+    expect(listResponseCustomersXML.text).toContain(`<number>2</number>`);
+    expect(listResponseCustomersXML.text).toContain(`<zip>000002</zip>`);
+    expect(listResponseCustomersXML.text).toContain(`</customers>`);
   });
 });

@@ -3,13 +3,14 @@ import { CreateCustomerUseCase } from "../../../usecase/customer/create/create-c
 import { CustomerRepository } from "../../customer/repository/sequelize/customer.repository";
 import { InputCreateCustomerDto } from "../../../usecase/customer/create/dto/create-customer.dto";
 import { ListCustomersUseCase } from "../../../usecase/customer/list/list-customers.usecase";
+import { CustomerPresenter } from "../presenters/customer/customer.presenter";
 
 export const customerRoutes = Router();
 
 customerRoutes.post("/", async (req: Request, res: Response) => {
   try {
     const createCustomerUsecase = new CreateCustomerUseCase(
-      new CustomerRepository(),
+      new CustomerRepository()
     );
     const inputDto: InputCreateCustomerDto = {
       name: req.body.name,
@@ -23,24 +24,20 @@ customerRoutes.post("/", async (req: Request, res: Response) => {
 
     const output = await createCustomerUsecase.execute(inputDto);
     return res.send(output);
-    
   } catch (err) {
     return res.status(500).send(err);
   }
 });
 
-
 customerRoutes.get("/", async (req: Request, res: Response) => {
-  try {
-    const listCustomersUseCase = new ListCustomersUseCase(
-      new CustomerRepository(),
-    );
+  const listCustomersUseCase = new ListCustomersUseCase(
+    new CustomerRepository()
+  );
 
-    const output = await listCustomersUseCase.execute({});
+  const output = await listCustomersUseCase.execute({});
 
-    return res.send(output);
-    
-  } catch (err) {
-    return res.status(500).send(err);
-  }
+  res.format({
+    json: async () => res.send(output),
+    xml: async () => res.send(CustomerPresenter.listXML(output)),
+  });
 });
